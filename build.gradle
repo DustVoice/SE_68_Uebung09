@@ -1,0 +1,49 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.9"
+	}
+}
+
+
+apply plugin: "java"
+apply plugin: "checkstyle"
+apply plugin: "com.github.spotbugs"
+
+dependencies {
+	testCompile 'junit:junit:4.12'
+}
+
+checkstyle {
+	repositories {
+		mavenCentral()
+		
+		maven {
+			url "http://sevntu-checkstyle.github.com/sevntu.checkstyle/maven2"
+		}
+	}
+	
+	configFile file("checkstyle.xml")
+	
+	checkstyleMain {
+		source = 'src/main/java'
+	}
+
+	checkstyleTest {
+		source = 'src/test/java'
+	}	
+}
+
+spotbugs {
+	ignoreFailures = false
+}
+
+jar {
+	manifest {
+		attributes("Main-Class": "de.tud.cs.se.flashcards.Main")
+	}
+}

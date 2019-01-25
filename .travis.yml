@@ -1,8 +1,10 @@
 language: java
 #install: true
 
-script:
+before_install:
   - chmod +x ./gradlew
+
+script:
   - ./gradlew build
 
 #before_cache:

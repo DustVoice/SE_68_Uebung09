@@ -10,15 +10,11 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 }
 
+repositories {
+	jcenter()
+}
+
 checkstyle {
-	repositories {
-		mavenCentral()
-		
-		maven {
-			url "http://sevntu-checkstyle.github.com/sevntu.checkstyle/maven2"
-		}
-	}
-	
 	configFile file("checkstyle.xml")
 	
 	checkstyleMain {

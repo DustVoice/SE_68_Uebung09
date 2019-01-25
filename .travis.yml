@@ -1,9 +1,8 @@
 language: java
-install: true
+#install: true
 
 script:
-  - gradle check --stacktrace
-  - gradle clean build
+  - ./gradlew build
 
 #before_cache:
     #- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

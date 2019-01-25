@@ -1,18 +1,10 @@
-buildscript {
-	repositories {
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-	dependencies {
-		classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.9"
-	}
+plugins {
+	id "application"
+	id "java"
+	id "com.github.spotbugs" version "1.6.9"
 }
 
-
-apply plugin: "java"
 apply plugin: "checkstyle"
-apply plugin: "com.github.spotbugs"
 
 dependencies {
 	testCompile 'junit:junit:4.12'
@@ -35,11 +27,14 @@ checkstyle {
 
 	checkstyleTest {
 		source = 'src/test/java'
-	}	
+	}
+
+	toolVersion "7.8.1"
 }
 
 spotbugs {
 	ignoreFailures = false
+	toolVersion "3.1.9"
 }
 
 jar {
@@ -47,3 +42,5 @@ jar {
 		attributes("Main-Class": "de.tud.cs.se.flashcards.Main")
 	}
 }
+
+mainClassName = "de.tud.cs.se.flashcards.Main"
